@@ -1,0 +1,673 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arebah | Child of God</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing:border-box; }
+
+body {
+ margin:0;
+ background:linear-gradient(135deg,#e9efdf,#c9d9bd,#f5edda);
+ color:#344a35;
+ font-family:'Cormorant Garamond',serif;
+ font-style:italic;
+ text-align:center;
+ overflow-x:hidden;
+ min-height:100vh;
+}
+
+#login {
+ min-height:100vh;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+}
+
+.login-card {
+ background:rgba(255,255,255,.8);
+ padding:40px 25px;
+ border:1px solid #a8b99a;
+ border-radius:25px;
+ max-width:380px;
+ width:100%;
+ box-shadow:0 10px 35px #526b4933;
+}
+
+h1 {
+ font-family:'Great Vibes',cursive;
+ font-size:48px;
+ color:#496b43;
+ font-weight:normal;
+}
+
+input {
+ padding:13px;
+ border:1px solid #9aaf8d;
+ border-radius:20px;
+ font-family:inherit;
+ font-size:17px;
+ text-align:center;
+ width:100%;
+ margin:10px 0;
+}
+
+button {
+ cursor:pointer;
+ border:none;
+ border-radius:25px;
+ padding:12px 23px;
+ background:#52734d;
+ color:white;
+ font-family:inherit;
+ font-style:italic;
+ font-size:18px;
+ transition:.3s;
+}
+
+button:hover {
+ transform:scale(1.06);
+ background:#304d34;
+}
+
+#garden {
+ display:none;
+ padding:25px 15px 60px;
+}
+
+.subtitle {
+ font-size:21px;
+}
+
+.leaves {
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:22px;
+ margin:35px auto;
+ max-width:650px;
+}
+
+.leaf {
+ width:145px;
+ height:175px;
+ border-radius:5% 85% 5% 85%;
+ background:linear-gradient(135deg,#a9c58e,#416b42);
+ color:white;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ cursor:pointer;
+ box-shadow:4px 8px 15px #314b3433;
+ animation:sway 3s ease-in-out infinite;
+}
+
+.leaf:nth-child(2) {animation-delay:.6s}
+.leaf:nth-child(3) {animation-delay:1.2s}
+
+.leaf span {
+ font-size:34px;
+}
+
+.leaf p {
+ font-size:18px;
+}
+
+@keyframes sway {
+ 0%,100% {transform:rotate(-3deg) translateY(0)}
+ 50% {transform:rotate(4deg) translateY(-12px)}
+}
+
+.modal {
+ display:none;
+ position:fixed;
+ inset:0;
+ background:#17251bdb;
+ z-index:20;
+ overflow-y:auto;
+ padding:20px;
+ align-items:center;
+ justify-content:center;
+}
+
+.letter {
+ background:#fffdf1;
+ max-width:650px;
+ width:100%;
+ margin:auto;
+ padding:30px 25px;
+ border:5px double #9eae83;
+ border-radius:12px;
+ box-shadow:0 0 40px #0005;
+ animation:openLetter .8s ease;
+ text-align:left;
+ line-height:1.8;
+ font-size:19px;
+}
+
+@keyframes openLetter {
+ from {transform:scale(.3) rotate(-8deg);opacity:0}
+ to {transform:scale(1) rotate(0);opacity:1}
+}
+
+.letter h2 {
+ text-align:center;
+ color:#52734d;
+ font-size:32px;
+}
+
+.photo {
+ display:block;
+ width:100%;
+ max-height:350px;
+ object-fit:cover;
+ border-radius:12px;
+ margin:20px auto;
+ border:4px solid #c6d2ad;
+}
+
+.close {
+ display:block;
+ margin:25px auto 0;
+}
+
+.falling {
+ position:fixed;
+ top:-30px;
+ z-index:5;
+ pointer-events:none;
+ animation:fall linear infinite;
+ opacity:.65;
+}
+
+@keyframes fall {
+ to {transform:translateY(110vh) rotate(500deg)}
+}
+
+#surprise {
+ margin:55px auto 20px;
+ max-width:500px;
+ padding:25px;
+ background:#ffffff85;
+ border-radius:25px;
+ border:1px solid #a8b99a;
+}
+
+.inhaler {
+ width:90px;
+ height:160px;
+ margin:25px auto;
+ position:relative;
+ cursor:pointer;
+ animation:breathe 2s infinite ease-in-out;
+}
+
+@keyframes breathe {
+ 50% {transform:translateY(-7px)}
+}
+
+.inhaler-body {
+ position:absolute;
+ left:18px;
+ top:20px;
+ width:55px;
+ height:105px;
+ border-radius:12px;
+ background:linear-gradient(90deg,#b6c8ae,#52734d,#a9c69a);
+ border:3px solid #426044;
+}
+
+.inhaler-top {
+ position:absolute;
+ top:0;
+ left:32px;
+ width:28px;
+ height:35px;
+ background:#dce6d3;
+ border:3px solid #52734d;
+ border-radius:7px 7px 0 0;
+}
+
+.inhaler-mouth {
+ position:absolute;
+ top:115px;
+ left:27px;
+ width:45px;
+ height:22px;
+ background:#52734d;
+ border-radius:0 0 8px 8px;
+}
+
+.inhaler:active {
+ transform:scale(.85) rotate(-8deg);
+}
+
+.puff {
+ font-size:35px;
+ position:absolute;
+ animation:puff 1.5s ease-out forwards;
+ pointer-events:none;
+}
+
+@keyframes puff {
+ from {opacity:1;transform:translate(0,0) scale(.5)}
+ to {opacity:0;transform:translate(70px,-70px) scale(2)}
+}
+
+#himMessage {
+ display:none;
+ animation:openLetter 1s ease;
+}
+
+footer {
+ margin-top:45px;
+ font-size:17px;
+ color:#536d4b;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<section id="login">
+ <div class="login-card">
+  <h1>Welcome to the Garden</h1>
+  <p>A little surprise for a very special soul.</p>
+  <p>🌿 Enter your secret password 🌿</p>
+  <input id="password" type="password" placeholder="Your secret password">
+  <button onclick="unlock()">Open the Garden</button>
+  <p id="error" style="color:#a33"></p>
+ </div>
+</section>
+
+<!-- MAIN GARDEN -->
+<main id="garden">
+
+ <h1>Happy Birthday, Arebah!</h1>
+ <p class="subtitle">To the beautiful Child of God 🌿</p>
+
+ <p>
+  Somewhere between the flowers, the sunshine and the leaves,
+  three little letters are waiting for you.
+ </p>
+
+ <h2>Choose a leaf to open your letter</h2>
+
+ <div class="leaves">
+
+  <div class="leaf" onclick="openLetter(1)">
+   <span>🍃</span>
+   <p>Letter One</p>
+   <small>Birthday wishes</small>
+  </div>
+
+  <div class="leaf" onclick="openLetter(2)">
+   <span>🌿</span>
+   <p>Letter Two</p>
+   <small>Our O&G memories</small>
+  </div>
+
+  <div class="leaf" onclick="openLetter(3)">
+   <span>🍀</span>
+   <p>Letter Three</p>
+   <small>Your future</small>
+  </div>
+
+ </div>
+
+ <!-- LETTER ONE -->
+ <div class="modal" id="letter1">
+  <div class="letter">
+   <h2>🌸 A Birthday Letter 🌸</h2>
+   <img src="arebah1.jpg" class="photo" alt="Birthday memory">
+
+   <p>My dearest Arebah,</p>
+
+   <p>
+    Happiest birthday to you! Today is not just another day on the
+    calendar. It is a day to celebrate the existence of someone
+    genuinely special. Someone whose presence makes ordinary days
+    a little brighter and whose friendship is a blessing in its
+    own beautiful way.
+   </p>
+
+   <p>
+    I hope this new chapter of your life brings you everything
+    your heart has been quietly wishing for. May you experience
+    happiness that does not depend on circumstances, peace that
+    stays even during difficult days, and success that makes every
+    sacrifice along the way worthwhile.
+   </p>
+
+   <p>
+    May God continue to guide your steps, protect you wherever you
+    go and place the right people in your life. May every closed
+    door lead you towards something better, every disappointment
+    teach you something valuable, and every little victory remind
+    you of how far you have come.
+   </p>
+
+   <p>
+    I wish you countless reasons to smile, wonderful opportunities,
+    beautiful memories, good health, financial freedom, and a life
+    filled with people who genuinely appreciate you.
+   </p>
+
+   <p>
+    Never feel that you need to become someone else to be worthy
+    of good things. Continue being yourself. Keep your kindness,
+    your personality, your little quirks and that special spark
+    that makes you who you are.
+   </p>
+
+   <p>
+    I hope that when you look back at this birthday years from
+    now, you will smile at how much you have grown and how many
+    wonderful things life has brought your way.
+   </p>
+
+   <p>
+    Happy birthday once again, Arebah. May your life blossom
+    beautifully, just like a garden after the first rain.
+   </p>
+
+   <p style="text-align:right">
+    With lots of wishes,<br>
+    Your friend 🌿
+   </p>
+
+   <button class="close" onclick="closeLetters()">Close letter</button>
+  </div>
+ </div>
+
+ <!-- LETTER TWO -->
+ <div class="modal" id="letter2">
+  <div class="letter">
+   <h2>😂 To My Asthmatic Partner</h2>
+   <img src="arebah2.jpg" class="photo" alt="O&G posting memory">
+
+   <p>Dear Arebah,</p>
+
+   <p>
+    First of all, happy birthday to the one person whose asthma
+    deserves its own attendance record! 😂
+   </p>
+
+   <p>
+    I genuinely hope your birthday comes with unlimited laughter,
+    cake and absolutely no unnecessary wheezing. May your lungs
+    cooperate with you for once instead of behaving like they
+    have their own plans. Please remember that even your inhaler
+    deserves a birthday break!
+   </p>
+
+   <p>
+    Jokes aside, I really want you to know how wonderful you are.
+    You are genuinely one of those people who deserve to be
+    appreciated more often. There is something special about
+    the way you carry yourself, the way you interact with people
+    and the person you are.
+   </p>
+
+   <p>
+    You are truly a Child of God. I mean that sincerely.
+    You have so much potential, goodness and beauty within you.
+    I hope you never underestimate the person you are becoming.
+    You deserve kindness, opportunities, blessings and every
+    beautiful thing life has to offer.
+   </p>
+
+   <p>
+    I also want to thank you for being my partner during our
+    O&G posting. Those days would have been different without
+    you. Thank you for sharing that experience with me, for
+    being there through the posting, and for making the journey
+    more memorable.
+   </p>
+
+   <p>
+    Clinical postings can be tiring, stressful and unpredictable.
+    There are days when everything feels overwhelming, but having
+    someone to share the experience with makes such a difference.
+    I genuinely appreciate the memories we created together.
+   </p>
+
+   <p>
+    And before I finish, I want to apologise if I have ever
+    knowingly or unknowingly hurt you, upset you, made you
+    uncomfortable or said something that did not come across
+    the right way. Sometimes we may not realise how our words
+    or actions affect someone else. If I have done anything
+    like that, I am genuinely sorry.
+   </p>
+
+   <p>
+    I never want a careless word or an unintended action to
+    overshadow the good memories and friendship we have shared.
+    Thank you for being part of my journey.
+   </p>
+
+   <p>
+    Stay the wonderful person you are. Keep smiling, keep
+    growing, keep being kind and, most importantly, take care
+    of those lungs! 😂
+   </p>
+
+   <p style="text-align:right">
+    Your O&G partner,<br>
+    Always wishing you the best 🌿
+   </p>
+
+   <button class="close" onclick="closeLetters()">Close letter</button>
+  </div>
+ </div>
+
+ <!-- LETTER THREE -->
+ <div class="modal" id="letter3">
+  <div class="letter">
+   <h2>🩺 A Letter From Your Future</h2>
+   <img src="arebah3.jpg" class="photo" alt="Future doctor memory">
+
+   <p>Dear Dr Arebah,</p>
+
+   <p>
+    I want you to imagine yourself a few years from now.
+    Walking into a hospital with confidence, wearing your
+    professional attire, knowing that you have worked incredibly
+    hard to reach the position you are standing in.
+   </p>
+
+   <p>
+    Because I genuinely believe that you are going to become
+    an amazing doctor. Not just someone who holds a medical
+    degree, but someone who makes a real difference in the
+    lives of patients.
+   </p>
+
+   <p>
+    And especially, I can already imagine you becoming one of
+    the best anaesthesiologists around! The one who knows exactly
+    what to do, remains calm during challenging situations,
+    understands every detail and earns the trust of colleagues
+    and patients alike.
+   </p>
+
+   <p>
+    One day, I hope people will proudly recommend you because
+    of your knowledge, your skills, your dedication and the
+    quality of care you provide. I hope you become the kind
+    of doctor whom juniors look up to and patients feel safe
+    around.
+   </p>
+
+   <p>
+    And of course, we cannot forget the financial side of
+    things! 😂 I wish you become the richest anaesthesiologist
+    in the room. May your bank account be as impressive as
+    your medical skills. May you earn enough to travel,
+    experience the world, spoil yourself, support your family
+    and enjoy all the things you once dreamed about.
+   </p>
+
+   <p>
+    There will undoubtedly be difficult days. There may be
+    exhausting calls, long hours, challenging patients and
+    moments when you question yourself. But please remember
+    that every great doctor was once a student who was still
+    learning.
+   </p>
+
+   <p>
+    Do not allow temporary setbacks to make you doubt your
+    permanent potential. Be patient with yourself. Keep
+    learning, keep improving and never lose the compassion
+    that makes medicine meaningful.
+   </p>
+
+   <p>
+    I hope you look back one day and realise that all those
+    little efforts, sacrifices and difficult moments were
+    building the person you always wanted to become.
+   </p>
+
+   <p>
+    So, future Dr Arebah, go out there and make it happen.
+    Become excellent, become successful, become wealthy
+    and, most importantly, remain a good human being.
+   </p>
+
+   <p>
+    But today? Forget about all the responsibilities!
+    It is your birthday. Eat cake, laugh loudly, enjoy
+    yourself and have the best time possible.
+   </p>
+
+   <p>
+    The hospital can wait. The future anaesthesiologist
+    deserves a proper birthday celebration! 😂
+   </p>
+
+   <p style="text-align:right">
+    To your incredibly bright future,<br>
+    Your friend 🌿
+   </p>
+
+   <button class="close" onclick="closeLetters()">Close letter</button>
+  </div>
+ </div>
+
+ <!-- INHALER SURPRISE -->
+ <section id="surprise">
+  <h2>One Last Little Surprise 😂</h2>
+  <p>
+   Before you leave, I have one important medical prescription
+   for you.
+  </p>
+
+  <p>Tap the inhaler below!</p>
+
+  <div class="inhaler" onclick="useInhaler(event)">
+   <div class="inhaler-top"></div>
+   <div class="inhaler-body"></div>
+   <div class="inhaler-mouth"></div>
+  </div>
+
+  <p>Click for your final surprise 🌬️</p>
+
+  <div id="himMessage">
+   <h2>Well, well, well... 👀</h2>
+
+   <p>
+    Hope you get someone like him.
+   </p>
+
+   <img src="him.jpg" class="photo" alt="Your surprise picture">
+
+   <p>
+    May your future be filled with happiness, laughter
+    and someone who makes you smile just as much! 😂
+   </p>
+  </div>
+ </section>
+
+ <footer>
+  Made with friendship, blessings and a little bit of asthma humour.
+  <p>Happy Birthday, Child of God. 🌿</p>
+ </footer>
+
+</main>
+
+<script>
+function unlock() {
+ const pass = document.getElementById("password").value;
+
+ if(pass === "AsthmaBay") {
+  document.getElementById("login").style.display="none";
+  document.getElementById("garden").style.display="block";
+ } else {
+  document.getElementById("error").innerText =
+   "Wrong password! Try again 🌿";
+ }
+}
+
+function openLetter(number) {
+ closeLetters();
+ document.getElementById("letter"+number).style.display="flex";
+}
+
+function closeLetters() {
+ document.querySelectorAll(".modal").forEach(m => {
+  m.style.display="none";
+ });
+}
+
+function useInhaler(event) {
+ const inhaler = event.currentTarget;
+ const puff = document.createElement("span");
+
+ puff.className="puff";
+ puff.innerHTML="☁️";
+ puff.style.left="50%";
+ puff.style.top="20px";
+ inhaler.appendChild(puff);
+
+ setTimeout(() => puff.remove(),1500);
+
+ document.getElementById("himMessage").style.display="block";
+ document.getElementById("himMessage").scrollIntoView({
+  behavior:"smooth",
+  block:"center"
+ });
+}
+
+// Continuous falling leaves and petals
+const symbols=["🍃","🌿","🍂","✿","❀","✨"];
+
+function createLeaf() {
+ const leaf=document.createElement("div");
+ leaf.className="falling";
+ leaf.innerHTML=symbols[
+  Math.floor(Math.random()*symbols.length)
+ ];
+ leaf.style.left=Math.random()*100+"vw";
+ leaf.style.fontSize=(14+Math.random()*17)+"px";
+ leaf.style.animationDuration=(6+Math.random()*9)+"s";
+
+ document.body.appendChild(leaf);
+
+ setTimeout(()=>leaf.remove(),16000);
+}
+
+setInterval(createLeaf,450);
+</script>
+
+</body>
+</html>
